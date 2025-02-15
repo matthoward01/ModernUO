@@ -650,7 +650,7 @@
     "StrGain": 0.75,
     "DexGain": 0.25,
     "IntGain": 0,
-    "GainFactor": 1,
+    "GainFactor": 0.05,
     "ProfessionSkillName": "Swordsmanship",
     "PrimaryStat": "Str",
     "SecondaryStat": "Dex"

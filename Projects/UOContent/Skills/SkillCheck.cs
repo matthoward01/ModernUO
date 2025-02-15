@@ -110,14 +110,32 @@ public static class SkillCheck
             else if (AllowGain(from, skill, amObj))
             {
                 var gc = (double)(from.Skills.Cap - from.Skills.Total) / from.Skills.Cap;
+                /*if (from.Name == "Synthian" && skill.Info.Name == "Swordsmanship")
+                {
+                    Console.WriteLine($"-------------------");
+                    Console.WriteLine($"Before Formula");
+                    Console.WriteLine($"GainFactor: {skill.Info.GainFactor}");
+                    Console.WriteLine($"Chance: {chance}");
+                    Console.WriteLine($"Gain Chance: {gc}");
+                    Console.WriteLine($"-------------------");
+                }*/
                 gc += (skill.Cap - skill.Base) / skill.Cap;
                 gc /= 2;
 
                 gc += (1.0 - chance) * (success ? 0.5 : Core.AOS ? 0.0 : 0.2);
+
                 gc /= 2;
 
                 gc *= skill.Info.GainFactor;
-
+                /*if (from.Name== "Synthian" && skill.Info.Name == "Swordsmanship")
+                {
+                    Console.WriteLine($"-------------------");
+                    Console.WriteLine($"After Formula");
+                    Console.WriteLine($"GainFactor: {skill.Info.GainFactor}");
+                    Console.WriteLine($"Chance: {chance}");
+                    Console.WriteLine($"Gain Chance: {gc}");
+                    Console.WriteLine($"-------------------");
+                }*/
                 if (gc < 0.01)
                 {
                     gc = 0.01;
