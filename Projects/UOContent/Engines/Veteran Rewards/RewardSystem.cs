@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ModernUO.CodeGeneratedEvents;
 using Server.Accounting;
 using Server.Gumps;
@@ -573,7 +574,7 @@ namespace Server.Engines.VeteranRewards
 
             ComputeRewardInfo(pm, out var cur, out var max, out var level);
 
-            if (pm.SkillsCap is 7000 or 7050 or 7100 or 7150 or 7200)
+            /*if (pm.SkillsCap is 7000 or 7050 or 7100 or 7150 or 7200)
             {
                 level = Math.Clamp(level, 0, 4);
 
@@ -584,6 +585,19 @@ namespace Server.Engines.VeteranRewards
                 else
                 {
                     pm.SkillsCap = 7000;
+                }
+            }*/
+
+            int[] validCaps = { pm.SkillsCap, pm.SkillsCap + 50, pm.SkillsCap + 100, pm.SkillsCap + 150, pm.SkillsCap + 200 };
+
+            // Ensure SkillsCap is within valid ranges before proceeding
+            if (validCaps.Contains(pm.SkillsCap))
+            {
+                level = Math.Clamp(level, 0, 4);
+
+                if (SkillCapRewards)
+                {
+                    pm.SkillsCap += level * 50; // Properly increment SkillsCap
                 }
             }
 

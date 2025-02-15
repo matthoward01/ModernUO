@@ -486,7 +486,7 @@ public class Skills
                 {
                     if (version < 2)
                     {
-                        Cap = 7000;
+                        Cap = ServerConfiguration.GetOrUpdateSetting("matt.skillcap", 7000);
                     }
 
                     /*m_Total =*/
