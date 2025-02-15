@@ -1352,7 +1352,29 @@ public abstract partial class BaseWeapon
             chance = 0.02;
         }
 
-        return attacker.CheckSkill(atkSkill.SkillName, chance);
+        var success = chance >= Utility.RandomDouble();
+
+        if (success)
+        {
+            var skillChance = 0.0;
+            var defSkill = attacker.Skills[defWeapon?.Skill ?? SkillName.Wrestling];
+            var max = (atkSkill.Value * 1.5);
+            var min = (atkSkill.Value / 2.0);
+
+            if (atkSkill.Value > 0 && (defSkill.Value > min && defSkill.Value < max))
+            {
+                var mid = (max + min) / 2.0;
+                var range = max - min;
+                var normalizedDistance = (2 * (defSkill.Value - mid)) / range;
+
+
+                skillChance = 0.1 + (0.9 - 0.1) * (1 - Math.Exp(-4.0 * normalizedDistance * normalizedDistance));
+            }
+
+            attacker.CheckSkill(atkSkill.SkillName, skillChance);
+        }
+
+        return success;
     }
 
     public virtual TimeSpan GetDelay(Mobile m)
@@ -2597,20 +2619,6 @@ public abstract partial class BaseWeapon
 
     public virtual double ScaleDamageOld(Mobile attacker, double damage, bool checkSkills)
     {
-        if (checkSkills)
-        {
-            // Passively check tactics for gain
-            attacker.CheckSkill(SkillName.Tactics, 0.0, attacker.Skills.Tactics.Cap);
-
-            // Passively check Anatomy for gain
-            attacker.CheckSkill(SkillName.Anatomy, 0.0, attacker.Skills.Anatomy.Cap);
-
-            if (Type == WeaponType.Axe)
-            {
-                // Passively check Lumberjacking for gain
-                attacker.CheckSkill(SkillName.Lumberjacking, 0.0, 100.0);
-            }
-        }
 
         /* Compute tactics modifier
          * :   0.0 = 50% loss
@@ -2687,6 +2695,32 @@ public abstract partial class BaseWeapon
         if (Core.AOS)
         {
             return ComputeDamageAOS(attacker, defender);
+        }
+        var skillChance = 0.0;
+        var atkSkill = attacker.Skills.Tactics;
+        var defSkill = defender.Skills.Tactics;
+        var max = (atkSkill.Value * 1.5);
+        var min = (atkSkill.Value / 2.0);
+
+        if (atkSkill.Value > 0 && (defSkill.Value > min && defSkill.Value < max))
+        {
+            var mid = (max + min) / 2.0;
+            var range = max - min;
+            var normalizedDistance = (2 * (defSkill.Value - mid)) / range;
+
+            skillChance = 0.1 + (0.9 - 0.1) * (1 - Math.Exp(-4.0 * normalizedDistance * normalizedDistance));
+        }
+        
+        // Passively check tactics for gain
+        attacker.CheckSkill(SkillName.Tactics, skillChance);
+
+        // Passively check Anatomy for gain
+        attacker.CheckSkill(SkillName.Anatomy, 0.0, attacker.Skills.Anatomy.Cap);
+
+        if (Type == WeaponType.Axe)
+        {
+            // Passively check Lumberjacking for gain
+            attacker.CheckSkill(SkillName.Lumberjacking, 0.0, 100.0);
         }
 
         var damage = (int)ScaleDamageOld(attacker, GetBaseDamage(attacker), true);
