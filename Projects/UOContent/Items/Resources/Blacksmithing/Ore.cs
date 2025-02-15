@@ -57,13 +57,19 @@ public abstract partial class BaseOre : Item
         // _resource = (CraftResource)reader.ReadInt();
     }
 
-    private static int RandomSize() =>
+    /*private static int RandomSize() =>
         Utility.RandomDouble() switch
         {
             < 0.125  => 0x19B7, // Small
             < 0.1875 => 0x19B8, // Medium clump
             < 0.25   => 0x19BA, // Medium
             _        => 0x19B9  // Large
+        };*/
+
+    private static int RandomSize() =>
+        Utility.RandomDouble() switch
+        {
+            _ => 0x19B9  // Large
         };
 
     public override bool CanStackWith(Item dropped) =>
