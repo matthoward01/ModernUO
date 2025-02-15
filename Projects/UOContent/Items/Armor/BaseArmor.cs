@@ -795,7 +795,7 @@ namespace Server.Items
                             }
                             else
                             {
-                                Delete();
+                                //Delete();
                             }
                         }
                     }
