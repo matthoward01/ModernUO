@@ -467,7 +467,7 @@ public class Skills
     public static HashSet<SkillName> NonTotalInfluencingSkills = new HashSet<SkillName>()
     {
         SkillName.Hiding, SkillName.Cooking, SkillName.Begging, SkillName.Camping
-        ,SkillName.Herding, SkillName.ItemID, SkillName.Poisoning, SkillName.TasteID
+        ,SkillName.Herding, SkillName.ItemID, SkillName.Poisoning, SkillName.TasteID, SkillName.Stealing
         ,SkillName.Tracking, SkillName.Fishing, SkillName.Cartography, SkillName.Lockpicking, SkillName.RemoveTrap
         ,SkillName.DetectHidden, SkillName.Snooping, SkillName.Stealth, SkillName.Forensics, SkillName.ArmsLore
     };
