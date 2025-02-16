@@ -118,11 +118,11 @@ public static class HonorVirtue
                 return;
             }
 
-            if (honorTarget.ReceivedHonorContext.CheckDistance())
+            /*if (honorTarget.ReceivedHonorContext.CheckDistance())
             {
                 source.SendLocalizedMessage(1063233); // Somebody else is honoring this opponent
                 return;
-            }
+            }*/
         }
 
         if (Core.ML && target is PlayerMobile)
@@ -131,11 +131,11 @@ public static class HonorVirtue
             return;
         }
 
-        if (target.Hits < target.HitsMax)
+        /*if (target.Hits < target.HitsMax)
         {
             source.SendLocalizedMessage(1063166); // You cannot honor this monster because it is too damaged.
             return;
-        }
+        }*/
 
         // Allow honor on blue if not in a guarded region or blue in Felucca
         if (target.Body.IsHuman && (target is not BaseCreature cret || !cret.AlwaysAttackable && !cret.AlwaysMurderer) &&
