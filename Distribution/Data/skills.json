@@ -138,7 +138,7 @@
     "StrGain": 0.6,
     "DexGain": 1.6,
     "IntGain": 0,
-    "GainFactor": 0.25,
+    "GainFactor": 0.75,
     "ProfessionSkillName": "Bowcraft",
     "PrimaryStat": "Dex",
     "SecondaryStat": "Str"
@@ -714,7 +714,7 @@
     "StrGain": 2,
     "DexGain": 0,
     "IntGain": 0,
-    "GainFactor": 0.25,
+    "GainFactor": 0.5,
     "ProfessionSkillName": "Lumberjacking",
     "PrimaryStat": "Str",
     "SecondaryStat": "Dex"
