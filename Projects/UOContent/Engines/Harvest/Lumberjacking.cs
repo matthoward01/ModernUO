@@ -42,8 +42,8 @@ namespace Server.Engines.Harvest
             {
                 BankWidth = 4,
                 BankHeight = 3,
-                MinTotal = 20,
-                MaxTotal = 45,
+                MinTotal = 40,
+                MaxTotal = 60,
                 MinRespawn = TimeSpan.FromMinutes(20.0),
                 MaxRespawn = TimeSpan.FromMinutes(30.0),
                 Skill = SkillName.Lumberjacking,

@@ -85,8 +85,8 @@ namespace Server.Engines.Harvest
             {
                 BankWidth = 8,
                 BankHeight = 8,
-                MinTotal = 10,
-                MaxTotal = 34,
+                MinTotal = 30,
+                MaxTotal = 40,
                 MinRespawn = TimeSpan.FromMinutes(10.0),
                 MaxRespawn = TimeSpan.FromMinutes(20.0),
                 Skill = SkillName.Mining,
