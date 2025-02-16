@@ -49,7 +49,7 @@ public abstract partial class BasePotion : Item, ICraftable, ICommodity
     {
         _potionEffect = effect;
 
-        Stackable = Core.ML;
+        Stackable = Core.LBR;
         Weight = 1.0;
     }
 
