@@ -10,7 +10,7 @@
     "StrGain": 0,
     "DexGain": 0.5,
     "IntGain": 0.5,
-    "GainFactor": 0.25,
+    "GainFactor": 0.75,
     "ProfessionSkillName": "Alchemy",
     "PrimaryStat": "Int",
     "SecondaryStat": "Dex"
@@ -122,7 +122,7 @@
     "StrGain": 1,
     "DexGain": 0,
     "IntGain": 0,
-    "GainFactor": 0.25,
+    "GainFactor": 0.75,
     "ProfessionSkillName": "Blacksmith",
     "PrimaryStat": "Str",
     "SecondaryStat": "Dex"
@@ -186,7 +186,7 @@
     "StrGain": 2,
     "DexGain": 0.5,
     "IntGain": 0,
-    "GainFactor": 0.25,
+    "GainFactor": 0.75,
     "ProfessionSkillName": "Carpentry",
     "PrimaryStat": "Str",
     "SecondaryStat": "Dex"
@@ -250,7 +250,7 @@
     "StrGain": 0,
     "DexGain": 0.25,
     "IntGain": 0.25,
-    "GainFactor": 0.25,
+    "GainFactor": 0.75,
     "ProfessionSkillName": "Enticement",
     "PrimaryStat": "Int",
     "SecondaryStat": "Dex"
@@ -362,7 +362,7 @@
     "StrGain": 0,
     "DexGain": 0.45,
     "IntGain": 0.05,
-    "GainFactor": 0.25,
+    "GainFactor": 0.75,
     "ProfessionSkillName": "Provocation",
     "PrimaryStat": "Int",
     "SecondaryStat": "Dex"
@@ -378,7 +378,7 @@
     "StrGain": 0,
     "DexGain": 0.2,
     "IntGain": 0.8,
-    "GainFactor": 0.25,
+    "GainFactor": 0.75,
     "ProfessionSkillName": "Inscription",
     "PrimaryStat": "Int",
     "SecondaryStat": "Dex"
@@ -554,7 +554,7 @@
     "StrGain": 0.38,
     "DexGain": 1.63,
     "IntGain": 0.5,
-    "GainFactor": 0.25,
+    "GainFactor": 0.75,
     "ProfessionSkillName": "Tailoring",
     "PrimaryStat": "Dex",
     "SecondaryStat": "Int"
@@ -570,7 +570,7 @@
     "StrGain": 1.4,
     "DexGain": 0.2,
     "IntGain": 0.4,
-    "GainFactor": 0.25,
+    "GainFactor": 0.5,
     "ProfessionSkillName": "AnimalTaming",
     "PrimaryStat": "Str",
     "SecondaryStat": "Int"
@@ -602,7 +602,7 @@
     "StrGain": 0.5,
     "DexGain": 0.2,
     "IntGain": 0.3,
-    "GainFactor": 0.25,
+    "GainFactor": 0.75,
     "ProfessionSkillName": "Tinkering",
     "PrimaryStat": "Dex",
     "SecondaryStat": "Int"
@@ -730,7 +730,7 @@
     "StrGain": 2,
     "DexGain": 0,
     "IntGain": 0,
-    "GainFactor": 0.25,
+    "GainFactor": 0.5,
     "ProfessionSkillName": "Mining",
     "PrimaryStat": "Str",
     "SecondaryStat": "Dex"
