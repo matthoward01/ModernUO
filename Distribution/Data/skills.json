@@ -426,7 +426,7 @@
     "StrGain": 0.25,
     "DexGain": 0.25,
     "IntGain": 0.5,
-    "GainFactor": 0.25,
+    "GainFactor": 1,
     "ProfessionSkillName": "ResistingSpells",
     "PrimaryStat": "Str",
     "SecondaryStat": "Dex"
