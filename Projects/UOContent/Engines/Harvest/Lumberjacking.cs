@@ -50,7 +50,7 @@ namespace Server.Engines.Harvest
                 LandTiles = Array.Empty<int>(),
                 StaticTiles = m_TreeTiles,
                 MaxRange = 20,
-                ConsumedPerHarvest = 10,
+                ConsumedPerHarvest = 20,
                 ConsumedPerFeluccaHarvest = 20,
                 EffectActions = new[] { 13 },
                 EffectSounds = new[] { 0x13E },
