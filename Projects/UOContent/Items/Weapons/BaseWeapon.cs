@@ -1357,7 +1357,7 @@ public abstract partial class BaseWeapon
         if (success)
         {
             var skillChance = 0.0;
-            var defSkill = attacker.Skills[defWeapon?.Skill ?? SkillName.Wrestling];
+            var defSkill = defender.Skills[defWeapon?.Skill ?? SkillName.Wrestling];
             var max = (atkSkill.Value * 1.5);
             var min = (atkSkill.Value / 2.0);
 
@@ -1368,9 +1368,20 @@ public abstract partial class BaseWeapon
                 var normalizedDistance = (2 * (defSkill.Value - mid)) / range;
 
 
-                skillChance = 0.1 + (0.9 - 0.1) * (1 - Math.Exp(-4.0 * normalizedDistance * normalizedDistance));
-            }
-
+                skillChance = 0.1 + (0.9 - 0.1) * (1 - Math.Exp(-8.0 * normalizedDistance * normalizedDistance));
+            }/*
+            if (attacker.Name== "Synthian" && atkSkill.Info.Name == "Tactics")
+            {
+                Console.WriteLine($"-------------------");
+                Console.WriteLine($"Swords SkillChance");
+                Console.WriteLine($"GainFactor: {atkSkill.Info.GainFactor}");
+                Console.WriteLine($"AtkSkill Value: {atkSkill.Value}");
+                Console.WriteLine($"DefSkill Value: {defSkill.Value}");
+                Console.WriteLine($"Chance: {chance}");
+                Console.WriteLine($"Skill Chance: {skillChance}");
+                Console.WriteLine($"Success: {success.ToString()}");
+                Console.WriteLine($"-------------------");
+            }*/
             attacker.CheckSkill(atkSkill.SkillName, skillChance);
         }
 
@@ -2708,9 +2719,18 @@ public abstract partial class BaseWeapon
             var range = max - min;
             var normalizedDistance = (2 * (defSkill.Value - mid)) / range;
 
-            skillChance = 0.1 + (0.9 - 0.1) * (1 - Math.Exp(-4.0 * normalizedDistance * normalizedDistance));
-        }
-        
+            skillChance = 0.1 + (0.9 - 0.1) * (1 - Math.Exp(-8.0 * normalizedDistance * normalizedDistance));
+        }/*
+        if (attacker.Name == "Synthian" && atkSkill.Info.Name == "Tactics")
+        {
+            Console.WriteLine($"-------------------");
+            Console.WriteLine($"Tactics Area");
+            Console.WriteLine($"GainFactor: {atkSkill.Info.GainFactor}");
+            Console.WriteLine($"AtkSkill Value: {atkSkill.Value}");
+            Console.WriteLine($"DefSkill Value: {defSkill.Value}");
+            Console.WriteLine($"Skill Chance: {skillChance}");
+            Console.WriteLine($"-------------------");
+        }*/
         // Passively check tactics for gain
         attacker.CheckSkill(SkillName.Tactics, skillChance);
 

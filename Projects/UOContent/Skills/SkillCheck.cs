@@ -76,7 +76,7 @@ public static class SkillCheck
             return false;
         }
 
-        if (chance < 0.0)
+        if (chance <= 0.0 && skill.Base >= 10)
         {
             return false; // Too difficult
         }
@@ -110,13 +110,14 @@ public static class SkillCheck
             else if (AllowGain(from, skill, amObj))
             {
                 var gc = (double)(from.Skills.Cap - from.Skills.Total) / from.Skills.Cap;
-                /*if (from.Name == "Synthian" && skill.Info.Name == "Swordsmanship")
+                /*if (from.Name == "Synthian" && skill.Info.Name == "Tactics")
                 {
                     Console.WriteLine($"-------------------");
                     Console.WriteLine($"Before Formula");
                     Console.WriteLine($"GainFactor: {skill.Info.GainFactor}");
                     Console.WriteLine($"Chance: {chance}");
                     Console.WriteLine($"Gain Chance: {gc}");
+                    Console.WriteLine($"Succees: {success}");
                     Console.WriteLine($"-------------------");
                 }*/
                 gc += (skill.Cap - skill.Base) / skill.Cap;
@@ -127,15 +128,7 @@ public static class SkillCheck
                 gc /= 2;
 
                 gc *= skill.Info.GainFactor;
-                /*if (from.Name== "Synthian" && skill.Info.Name == "Swordsmanship")
-                {
-                    Console.WriteLine($"-------------------");
-                    Console.WriteLine($"After Formula");
-                    Console.WriteLine($"GainFactor: {skill.Info.GainFactor}");
-                    Console.WriteLine($"Chance: {chance}");
-                    Console.WriteLine($"Gain Chance: {gc}");
-                    Console.WriteLine($"-------------------");
-                }*/
+                
                 if (gc < 0.01)
                 {
                     gc = 0.01;
@@ -145,6 +138,17 @@ public static class SkillCheck
                 {
                     gc *= 2;
                 }
+
+                /*if (from.Name == "Synthian" && skill.Info.Name == "Tactics")
+                {
+                    Console.WriteLine($"-------------------");
+                    Console.WriteLine($"After Formula");
+                    Console.WriteLine($"GainFactor: {skill.Info.GainFactor}");
+                    Console.WriteLine($"Chance: {chance}");
+                    Console.WriteLine($"Gain Chance: {gc}");
+                    Console.WriteLine($"Succees: {success}");
+                    Console.WriteLine($"-------------------");
+                }*/
 
                 if (gc >= Utility.RandomDouble())
                 {
