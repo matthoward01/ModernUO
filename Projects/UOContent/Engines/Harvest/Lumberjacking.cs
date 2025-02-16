@@ -54,7 +54,8 @@ namespace Server.Engines.Harvest
                 ConsumedPerFeluccaHarvest = 20,
                 EffectActions = new[] { 13 },
                 EffectSounds = new[] { 0x13E },
-                EffectCounts = Core.AOS ? new[] { 1 } : new[] { 1, 2, 2, 2, 3 },
+                EffectCounts = new[] { 1 },
+                //EffectCounts = Core.AOS ? new[] { 1 } : new[] { 1, 2, 2, 2, 3 },
                 EffectDelay = TimeSpan.FromSeconds(1.6),
                 EffectSoundDelay = TimeSpan.FromSeconds(0.9),
                 NoResourcesMessage = 500493, // There's not enough wood here to harvest.
