@@ -49,7 +49,7 @@ namespace Server.Engines.Harvest
                 Skill = SkillName.Lumberjacking,
                 LandTiles = Array.Empty<int>(),
                 StaticTiles = m_TreeTiles,
-                MaxRange = 2,
+                MaxRange = 20,
                 ConsumedPerHarvest = 10,
                 ConsumedPerFeluccaHarvest = 20,
                 EffectActions = new[] { 13 },
