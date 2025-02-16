@@ -6,6 +6,7 @@ using Server.Gumps;
 using Server.Mobiles;
 using Server.Multis;
 using Server.Network;
+using Server.Spells;
 
 namespace Server.Items;
 
@@ -582,8 +583,9 @@ public partial class SoulStone : Item, ISecurable
              * 11.6 free points. Also, if we're below our skillcap by, say, 8.2 points,
              * we only need 11.6 - 8.2 = 3.4 points.
              */
-            var requiredAmount = (int)(skillValue * 10) - fromSkill.BaseFixedPoint - (from.SkillsCap - from.SkillsTotal);
-
+            //TODO: Steven - Added exemption for non influencing skills
+            var requiredAmount = (int)(skillValue * 10) - fromSkill.BaseFixedPoint - (from.SkillsCap + (int)(Skills.NonTotalInfluencingSkills.Contains(_stone.Skill) ? fromSkill.Cap * 10 : 0) - from.SkillsTotal);
+          
             var cannotAbsorb = false;
 
             if (fromSkill.Lock != SkillLock.Up)

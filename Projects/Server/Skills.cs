@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using Server.Network;
@@ -182,7 +183,11 @@ public class Skill
 
             if (m_Base != sv)
             {
-                Owner.Total = Owner.Total - m_Base + sv;
+                //TODO: Steven - Added exemption for non influencing skills
+                if (!Skills.NonTotalInfluencingSkills.Contains(SkillName))
+                {
+                    Owner.Total = (Owner.Total - m_Base) + sv;
+                }
 
                 m_Base = sv;
 
@@ -457,6 +462,16 @@ public class Skills
     private readonly Skill[] m_Skills;
     private Skill m_Highest;
 
+    //TODO: Steven - Added exemption for non influencing skills
+    //TODO: Matt - Adding T-Hunter skills to list.
+    public static HashSet<SkillName> NonTotalInfluencingSkills = new HashSet<SkillName>()
+    {
+        SkillName.Hiding, SkillName.Cooking, SkillName.Begging, SkillName.Camping
+        ,SkillName.Herding, SkillName.ItemID, SkillName.Poisoning, SkillName.TasteID
+        ,SkillName.Tracking, SkillName.Fishing, SkillName.Cartography, SkillName.Lockpicking, SkillName.RemoveTrap
+        ,SkillName.DetectHidden, SkillName.Snooping, SkillName.Stealth, SkillName.Forensics, SkillName.ArmsLore
+    };
+
     public Skills(Mobile owner)
     {
         Owner = owner;
@@ -510,7 +525,11 @@ public class Skills
                             if (sk.BaseFixedPoint != 0 || sk.CapFixedPoint != 1000 || sk.Lock != SkillLock.Up)
                             {
                                 m_Skills[i] = sk;
-                                Total += sk.BaseFixedPoint;
+                                //TODO: Steven - Added exemption for non influencing skills
+                                if (!NonTotalInfluencingSkills.Contains(sk.SkillName))
+                                {
+                                    Total += sk.BaseFixedPoint;
+                                }
                             }
                         }
                         else
@@ -833,7 +852,11 @@ public class Skills
             else
             {
                 sk.Serialize(writer);
-                Total += sk.BaseFixedPoint;
+                //TODO: Steven - This part happens after the save!!
+                if (!NonTotalInfluencingSkills.Contains(sk.SkillName))
+                {
+                    Total += sk.BaseFixedPoint;
+                }
             }
         }
     }

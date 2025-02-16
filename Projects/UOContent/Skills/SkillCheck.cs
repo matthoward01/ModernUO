@@ -109,7 +109,9 @@ public static class SkillCheck
             }
             else if (AllowGain(from, skill, amObj))
             {
-                var gc = (double)(from.Skills.Cap - from.Skills.Total) / from.Skills.Cap;
+                //TODO: Steven - Added exemption for non influencing skills
+                var gc = (double)(from.Skills.Cap + (Skills.NonTotalInfluencingSkills.Contains(skill.SkillName) ? skill.Cap * 10 : 0) - from.Skills.Total) / from.Skills.Cap;
+
                 /*if (from.Name == "Synthian" && skill.Info.Name == "Tactics")
                 {
                     Console.WriteLine($"-------------------");

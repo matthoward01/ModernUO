@@ -4469,6 +4469,11 @@ namespace Server.Mobiles
             }
 
             var freePoints = Math.Max(m.Skills.Cap - m.Skills.Total, 0);
+            //TODO: Matt - Fixing it so non Influencing skills can be taught when at max skill point.
+            if (Skills.NonTotalInfluencingSkills.Contains(skill))
+            {
+                freePoints = 1000;
+            }
             var freeablePoints = 0;
 
             for (var i = 0; freePoints + freeablePoints < pointsToLearn && i < m.Skills.Length; ++i)
@@ -4483,7 +4488,8 @@ namespace Server.Mobiles
                 freeablePoints += sk.BaseFixedPoint;
             }
 
-            if (freePoints + freeablePoints == 0)
+            //TODO: Matt - Fixing it so non Influencing skills can be taught when at max skill point.
+            if ((freePoints + freeablePoints) == 0 && !Skills.NonTotalInfluencingSkills.Contains(skill))
             {
                 return TeachResult.NotEnoughFreePoints;
             }
@@ -4519,10 +4525,12 @@ namespace Server.Mobiles
                     }
                 }
 
+                //TODO: Matt - Fixing it so non Influencing skills can be taught when at max skill point.
                 /* Sanity check */
-                if (baseToSet > theirSkill.CapFixedPoint ||
-                    m.Skills.Total - theirSkill.BaseFixedPoint + baseToSet > m.Skills.Cap)
+                if ((baseToSet > theirSkill.CapFixedPoint || (m.Skills.Total - theirSkill.BaseFixedPoint + baseToSet) > m.Skills.Cap) && !Skills.NonTotalInfluencingSkills.Contains(skill))
                 {
+                    // Full refund
+                    m.Backpack.TryDropItem(m, new Gold(maxPointsToLearn), false);
                     return TeachResult.NotEnoughFreePoints;
                 }
 

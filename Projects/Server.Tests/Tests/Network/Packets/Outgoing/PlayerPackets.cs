@@ -132,7 +132,15 @@ namespace Server.Network
 
                 Stream.Write((ushort)(s.Info.SkillID + 1));
                 Stream.Write((ushort)uv);
-                Stream.Write((ushort)s.BaseFixedPoint);
+                //TODO: Steven - Added exemption for non influencing skills
+                if (!Skills.NonTotalInfluencingSkills.Contains(skills[i].SkillName))
+                {
+                    Stream.Write((ushort)s.BaseFixedPoint);
+                }
+                else
+                {
+                    Stream.Write((ushort)0);
+                }
                 Stream.Write((byte)s.Lock);
                 Stream.Write((ushort)s.CapFixedPoint);
             }
