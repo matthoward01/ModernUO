@@ -44,7 +44,8 @@ namespace Server.Items
             // WeaponAbility a = WeaponAbility.GetCurrentAbility( attacker );
 
             // Make sure we've been standing still for .25/.5/1 second depending on Era
-            if (Core.TickCount - attacker.LastMoveTime >= (Core.SE ? 250 : Core.AOS ? 500 : 1000) ||
+            //if (Core.TickCount - attacker.LastMoveTime >= (Core.SE ? 250 : Core.AOS ? 500 : 1000) ||
+            if (Core.TickCount - attacker.LastMoveTime >= (Core.SE ? attacker.Player ? 0 : 250 : Core.AOS ? attacker.Player ? 0 : 500 : attacker.Player ? 0 : 1000) ||
                 Core.AOS && WeaponAbility.GetCurrentAbility(attacker) is MovingShot)
             {
                 var canSwing = true;
