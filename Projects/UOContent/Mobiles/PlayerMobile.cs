@@ -4555,7 +4555,7 @@ namespace Server.Mobiles
         //TODO: Steven - Check to see if mobile has a buff
         public BuffInfo CheckBuff(BuffIcon bi)
         {
-            if (m_BuffTable.ContainsKey(bi))
+            if (m_BuffTable != null && m_BuffTable.ContainsKey(bi))
             {
                 return m_BuffTable?.GetValueOrDefault(bi);
             }
