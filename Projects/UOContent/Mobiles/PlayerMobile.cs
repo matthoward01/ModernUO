@@ -4552,23 +4552,6 @@ namespace Server.Mobiles
             }
         }
 
-        //TODO: Steven - Check to see if mobile has a buff
-        public BuffInfo CheckBuff(BuffIcon bi)
-        {
-            if (m_BuffTable != null)
-            {
-                foreach (var b in m_BuffTable)
-                {
-                    if (b.Key.Equals(bi))
-                    {
-                        return b.Value;
-                    }
-                }
-            }
-
-            return null;
-        }
-
         private class MountBlock
         {
             private TimerExecutionToken _timerToken;
