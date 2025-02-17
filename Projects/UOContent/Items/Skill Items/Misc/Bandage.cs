@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ModernUO.Serialization;
+using Server.Engines.BuffIcons;
 using Server.Engines.ConPVP;
 using Server.Factions;
 using Server.Gumps;
@@ -92,11 +93,28 @@ public partial class Bandage : Item, IDyable
 
             if (targeted is Mobile mobile)
             {
+                
+
                 if (from.InRange(_bandage.GetWorldLocation(), Bandage.Range))
                 {
-                    if (!(BandageContext.BeginHeal(from, mobile) == null || DuelContext.IsFreeConsume(from)))
+                    //TODO: Steven - Check if healing target already
+                    BuffInfo bi = null;
+
+                    if (targeted is PlayerMobile)
                     {
-                        _bandage.Consume();
+                        bi = (from as PlayerMobile)?.CheckBuff(BuffIcon.Healing);
+                    }
+                    else
+                    {
+                        bi = (from as PlayerMobile)?.CheckBuff(BuffIcon.Veterinary);
+                    }
+
+                    if (bi == null || !bi.Args.String.Contains(((Mobile)targeted).Name))
+                    {
+                        if (!(BandageContext.BeginHeal(from, mobile) == null || DuelContext.IsFreeConsume(from)))
+                        {
+                            _bandage.Consume();
+                        }
                     }
                 }
                 else
