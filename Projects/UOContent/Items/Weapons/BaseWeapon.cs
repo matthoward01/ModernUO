@@ -2553,7 +2553,24 @@ public abstract partial class BaseWeapon
     }
 
     // Note: AOS quality/damage bonuses removed since they are incorporated into the crafting already
-    public virtual int GetDamageBonus() => VirtualDamageBonus;
+    //public virtual int GetDamageBonus() => VirtualDamageBonus;
+    public virtual int GetDamageBonus()
+    {
+        if (!Core.AOS)
+        {
+            return 0;
+        }
+
+        return _damageLevel switch
+        {
+            WeaponDamageLevel.Ruin => 15,
+            WeaponDamageLevel.Might => 20,
+            WeaponDamageLevel.Force => 25,
+            WeaponDamageLevel.Power => 30,
+            WeaponDamageLevel.Vanq => 35,
+            _ => 0
+        };
+    }
 
     public virtual double ScaleDamageAOS(Mobile attacker, double damage, bool checkSkills)
     {
