@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using ModernUO.CodeGeneratedEvents;
 using Server.Accounting;
@@ -251,6 +252,20 @@ public static partial class CharacterCreation
             SetStats(newChar, state, profession?.Stats ?? args.Stats);
             SetSkills(newChar, profession?.Skills ?? args.Skills);
             GiveProfessionItems(newChar, profession, args.ShirtHue, args.PantsHue);
+
+            // TODO: Added setting some base skills to 100
+            newChar.Skills[SkillName.ArmsLore].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.Begging].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.Camping].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.DetectHidden].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.Forensics].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.Herding].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.Hiding].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.ItemID].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.Snooping].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.Stealth].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.TasteID].BaseFixedPoint = 1000;
+            newChar.Skills[SkillName.Tracking].BaseFixedPoint = 1000;
 
             if (race.ValidateHair(newChar, args.HairID))
             {
