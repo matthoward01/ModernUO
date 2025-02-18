@@ -531,7 +531,7 @@ namespace Server.Mobiles
                         }
                     }
 
-                    GiveGold += ssi.GetSellPriceFor(resp.Item) * amount;
+                    GiveGold += (ssi.GetSellPriceFor(resp.Item) * amount) * ServerConfiguration.GetOrUpdateSetting("matt.SellPriceMultiplier", 1);
                     break;
                 }
             }
