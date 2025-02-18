@@ -457,19 +457,19 @@ public class BandageContext : Timer
         {
             healer.SendLocalizedMessage(500951); // You cannot heal that.
         }
-        else if (!patient.Poisoned && patient.Hits == patient.HitsMax && !BleedAttack.IsBleeding(patient) &&
+        /*else if (!patient.Poisoned && patient.Hits == patient.HitsMax && !BleedAttack.IsBleeding(patient) &&
                  creature?.IsDeadPet != true)
         {
             healer.SendLocalizedMessage(500955); // That being is not damaged!
-        }
+        }*/
         else if (!patient.Alive && patient.Map?.CanFit(patient.Location, 16, false, false) != true)
         {
             healer.SendLocalizedMessage(501042); // Target cannot be resurrected at that location.
         }
-        else if ((healer as PlayerMobile)?.Young == true && (patient as PlayerMobile)?.Young == false)
+        /*else if ((healer as PlayerMobile)?.Young == true && (patient as PlayerMobile)?.Young == false)
         {
             healer.SendLocalizedMessage(500952); // As a young player, you may not use beneficial skills on older players.
-        }
+        }*/
         else if (healer.CanBeBeneficial(patient, true, true))
         {
             healer.DoBeneficial(patient);
