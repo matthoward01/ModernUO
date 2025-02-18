@@ -963,7 +963,7 @@ public partial class Corpse : Container, ICarvable
 
     public override void OnDoubleClick(Mobile from)
     {
-        Open(from, Core.AOS);
+        Open(from, Core.LBR);
     }
 
     public override bool CheckContentDisplay(Mobile from) => false;
