@@ -537,7 +537,7 @@ public partial class Corpse : Container, ICarvable
         {
             var item = initialContent[i];
 
-            if (Core.AOS && owner.Player && item.Parent == owner.Backpack)
+            if (Core.LBR && owner.Player && item.Parent == owner.Backpack)
             {
                 c.AddItem(item);
             }
@@ -546,7 +546,7 @@ public partial class Corpse : Container, ICarvable
                 c.DropItem(item);
             }
 
-            if (owner.Player && Core.AOS)
+            if (owner.Player && Core.LBR)
             {
                 c.SetRestoreInfo(item, item.Location);
             }
@@ -556,7 +556,7 @@ public partial class Corpse : Container, ICarvable
         {
             c.AssignInstancedLoot();
         }
-        else if (Core.AOS && owner is PlayerMobile pm)
+        else if (Core.LBR && owner is PlayerMobile pm)
         {
             c.RestoreEquip = pm.EquipSnapshot;
         }
