@@ -371,7 +371,7 @@ public static class StaminaSystem
 
             if (steps > maxSteps)
             {
-                --pm.Stam;
+                //--pm.Stam;
                 stepsTaken.Steps = 0;
             }
 
