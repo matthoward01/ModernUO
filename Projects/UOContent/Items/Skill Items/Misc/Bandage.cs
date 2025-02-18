@@ -484,11 +484,12 @@ public class BandageContext : Timer
             {
                 if (Core.AOS)
                 {
-                    seconds = 5.0 + 0.5 * ((double)(120 - dex) / 10); // TODO: Verify algorithm
+                    seconds = Math.Min(8, Math.Ceiling(11.0 - dex / 20));
+                    seconds = Math.Max(seconds, 4);
                 }
                 else
                 {
-                    seconds = 9.4 + 0.6 * ((double)(120 - dex) / 10);
+                    seconds = 9.4 + (0.6 * ((double)(120 - dex) / 10));
                 }
             }
             else if (Core.AOS && GetPrimarySkill(patient) == SkillName.Veterinary)
@@ -497,14 +498,8 @@ public class BandageContext : Timer
             }
             else if (Core.AOS)
             {
-                if (dex < 204)
-                {
-                    seconds = 3.2 - Math.Sin((double)dex / 130) * 2.5 + resDelay;
-                }
-                else
-                {
-                    seconds = 0.7 + resDelay;
-                }
+                seconds = Math.Ceiling((double)4 - dex / 60);
+                seconds = Math.Max(seconds, 2);
             }
             else if (dex >= 100)
             {
