@@ -25,7 +25,6 @@ using Server.Mobiles;
 using Server.Network;
 using Server.Prompts;
 using Server.Targeting;
-using Server.Text;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -4573,6 +4572,13 @@ public partial class Mobile : IHued, IComparable<Mobile>, ISpawnable, IObjectPro
             holding.ClearBounce();
         }
     }
+
+#if TRACK_LEAKS
+    ~Mobile()
+    {
+        EntityFinalizationTracker.NotifyFinalized(this);
+    }
+#endif
 
     /// <summary>
     ///     Overridable. Virtual event invoked before the Mobile is deleted.
