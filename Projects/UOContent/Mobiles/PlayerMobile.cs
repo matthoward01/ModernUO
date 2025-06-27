@@ -2365,7 +2365,7 @@ namespace Server.Mobiles
 
             if (Alive && !wasAlive)
             {
-                Item deathRobe = new DeathRobe();
+                var deathRobe = new DeathRobe();
 
                 if (!EquipItem(deathRobe))
                 {
@@ -2726,7 +2726,7 @@ namespace Server.Mobiles
             }
         }
 
-        private static void SendToStaffMessage(Mobile from, string text)
+        private static void SendToStaffMessage(PlayerMobile from, string text)
         {
             Span<byte> buffer = stackalloc byte[OutgoingMessagePackets.GetMaxMessageLength(text)].InitializePacket();
 
